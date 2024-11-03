@@ -3,11 +3,12 @@ from agents.base_agent import Agent
 
 class PlaybackAPIAnalystAgent(Agent):
 
+    ID = "playback_api_analyst_agent"
+    NAME = "Playback API Analyst Agent"
+    TASK = "analyse video data from playback api"
+
     def __init__(self):
-        id = "playback_api_analyst_agent"
-        name = "Playback API Analyst Agent"
-        task = "analyse video data from playback api"
-        super().__init__(id=id,name=name, task=task)
+        super().__init__(id=self.ID, name=self.NAME, task=self.TASK)
 
     def instructions(self):
         if not "video" in self.context:

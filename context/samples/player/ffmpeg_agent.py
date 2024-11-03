@@ -3,11 +3,12 @@ from agents.base_agent import Agent
 
 class FFMpegAgent(Agent):
 
+    ID = "ffmpeg_agent"
+    NAME = "FFMpeg Agent"
+    TASK = "use ffmpeg or ffprobe to extract video data"
+
     def __init__(self):
-        id = "ffmpeg_agent"
-        name = "FFMpeg Agent"
-        task = "use video with ffmpeg"
-        super().__init__(id=id,name=name, task=task)
+        super().__init__(id=self.ID, name=self.NAME, task=self.TASK)
 
     def instructions(self):
         if not "video" in self.context:
