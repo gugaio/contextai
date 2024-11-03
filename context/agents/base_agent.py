@@ -2,7 +2,7 @@ from abc import abstractmethod
 from typing import Optional
 from pydantic import BaseModel
 import json
-from tools import function_to_schema
+from context.tools import function_to_schema
 
 class Agent():
 
