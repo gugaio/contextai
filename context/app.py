@@ -15,6 +15,6 @@ while True:
     user = input("User: ")
     messages.append({"role": "user", "content": user})
 
-    response = manager.handle(messages)
+    response_messages = manager.handle(messages)
 
-    messages.extend(response)
+    messages.extend(response_messages)
