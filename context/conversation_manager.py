@@ -1,12 +1,17 @@
 from openai import OpenAI
 from tools import ToolExecutor
+from agents import TriageAgent
 
 class ConversationManager:
 
-    def __init__(self, initial_agent):
+    def __init__(self):
         self.client = OpenAI()
-        self.triage_agent = initial_agent
-        self.current_agent = initial_agent
+
+    def setup(self, agents:list, context:dict):
+        map_agents = {agent.id: agent for agent in agents}
+        context["agents"] = map_agents
+        self.triage_agent =TriageAgent(id="triage_agent",name="Triage Agent", task="", context=context, agents=map_agents)
+        self.current_agent = self.triage_agent
 
     def handle(self, messages):
         messages, init_messages_count = self._copy_messages(messages)
