@@ -1,5 +1,5 @@
 
-from context.agents.base_agent import Agent
+from context.agents import Agent
 
 class FFMpegAgent(Agent):
 
