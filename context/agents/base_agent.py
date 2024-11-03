@@ -6,7 +6,7 @@ from tools import function_to_schema
 
 class Agent():
 
-    def __init__(self, id: str, name: str, task: str, context: dict, agents: Optional[dict] = None):
+    def __init__(self, id: str, name: str, task: str, context: Optional[dict] = None, agents: Optional[dict] = None):
         self.id = id
         self.name = name
         self.task = task
@@ -20,6 +20,7 @@ class Agent():
     @abstractmethod
     def instructions(self) -> str:
         pass
+
 
     def transfer_to_agent(self, id):
             """Transfer to agent tool."""
