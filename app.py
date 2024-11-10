@@ -4,7 +4,8 @@ from context.samples.player import PlaybackAPIAnalystAgent, FFMpegAgent
 
 load_dotenv()
 
-manager = ConversationManager([PlaybackAPIAnalystAgent(), FFMpegAgent()])
+agents = [PlaybackAPIAnalystAgent(), FFMpegAgent()]
+manager = ConversationManager(agents)
 
 messages = []
 while True:

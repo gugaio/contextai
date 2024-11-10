@@ -12,8 +12,13 @@ class FFMpegAgent(Agent):
 
     def instructions(self):
         if not "video" in self.context:
-            return "Call load video to the context tool"
+            return self._instruction_to_load_video()
+        return self._instruction_to_extract_video_data_already_in_context()
+    
+    def _instruction_to_load_video(self):
+        return "Video was not loaded yet. Call load_video_to_context tool to load the video, you need to provide the video ID and the player type."
         
+    def _instruction_to_extract_video_data_already_in_context(self):
         return (
             "You are a ffmpeg agent and you can extract video data using ffmpeg."
             "Always answer in a sentence or less."
