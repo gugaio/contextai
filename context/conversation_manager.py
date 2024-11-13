@@ -5,7 +5,7 @@ from context.agents import TriageAgent
 class ConversationManager:
 
     def __init__(self, agents:list):
-        self.client = OpenAI()
+        self._llm = OpenAI()
         self.context = {}
         self._setup(agents)
 
@@ -41,7 +41,7 @@ class ConversationManager:
 
     def _invoke_llm(self, messages, instructions, tools):
         messages_to_send = [{"role": "system", "content": instructions}] + messages
-        return self.client.chat.completions.create(
+        return self._llm.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages_to_send,
             tools=tools,
