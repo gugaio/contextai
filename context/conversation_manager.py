@@ -4,17 +4,17 @@ from context.agents import TriageAgent
 
 class ConversationManager:
 
-    def __init__(self, agents:list):
+    def __init__(self, agents:list, initial_triage_instruction: str=""):
         self._llm = OpenAI()
         self.context = {}
-        self._setup(agents)
+        self._setup(agents, initial_triage_instruction)
 
-    def _setup(self, agents:list):
+    def _setup(self, agents:list, initial_triage_instruction: str):
         for agent in agents:
             agent.context = self.context
         map_agents = {agent.id: agent for agent in agents}
         self.context["agents"] = map_agents
-        self.triage_agent =TriageAgent(id="triage_agent",name="Triage Agent", task="", context=self.context, agents=map_agents)
+        self.triage_agent =TriageAgent(self.context, map_agents, initial_triage_instruction)
         self.current_agent = self.triage_agent
 
     def handle(self, messages):
